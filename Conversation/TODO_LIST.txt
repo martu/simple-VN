@@ -1,0 +1,28 @@
+TODO FILE (Conversation):
+
+- TextArea:
+	- Automatic line wrapping
+	- fading of the Text
+	- fade every character slowly in
+	- audio support
+	- support for reading/writing json-files (libjson ?)
+	- save/load system
+	- make everything resolution independent
+		- position = 0 - 100% ?
+		- scaling of the objects (need idea)
+	
+- SpriteEngine
+	- more effects:
+		- blurring
+		
+- ImageSequences need a option that every image has its own variables (setcenter...)
+
+- Transitions behave differently in Debug and in release builds
+	- debug works correct
+	- in the release build the old background doesn't seem to fade out
+
+- advanced conditions
+	- when x >= y
+	- when x >  y
+	- ...
+	- maybe with another flag array with float values ?

@@ -1,0 +1,15 @@
+TODO FILE:
+
+- InGame GUI
+
+- Game:
+	- Special options:
+		- HIDE (hides the TextArea and the Gui)
+	- Support for video files
+
+- GLOBAL:
+	- option system
+
+- SpriteEngine
+	- more effects:
+		- blurring

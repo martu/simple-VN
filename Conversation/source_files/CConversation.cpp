@@ -159,14 +159,14 @@ bool CConversation::AddScene   (SScene Scene)
 void CConversation::NextScene ()
 {
 	bool ChangedTheScene = false;
-	int  Scene = m_CurScene;
+	unsigned int  Scene = m_CurScene;
 
 	while (ChangedTheScene == false)
 	{
 		Scene++;
 
 		// test if this would be a valid scene
-		if (Scene < static_cast<int> (m_Scenes.size () ) )
+		if (Scene < m_Scenes.size () )
 			ChangedTheScene = ChangeScene (Scene); // is valid, so try to change it
 		else
 			ChangedTheScene = true; // not valid, so change nothing but get out of the while
@@ -176,7 +176,7 @@ void CConversation::NextScene ()
 void CConversation::PrevScene ()
 {
 	bool ChangedTheScene = false;
-	int  Scene = m_CurScene;
+	unsigned int  Scene = m_CurScene;
 
 	while (ChangedTheScene == false)
 	{
@@ -190,7 +190,7 @@ void CConversation::PrevScene ()
 	}
 }
 
-void CConversation::GoToScene (int SceneNr)
+void CConversation::GoToScene (unsigned int SceneNr)
 {
 	// go to a specific scene
 
@@ -209,8 +209,8 @@ void CConversation::Update ()
 	m_pTextArea->Update (m_pWindow->GetFrameTime () );
 
 	// Check if the current scene has a maximum duration
-	if (m_Scenes.at (m_CurScene).m_fDuration >=0 &&
-		m_Scenes.at (m_CurScene).m_fDuration >= m_fCurrentDuration &&
+	if (m_Scenes.at (m_CurScene).m_fDuration >= 0 &&
+		m_Scenes.at (m_CurScene).m_fDuration <= m_fCurrentDuration &&
 		m_Scenes.at (m_CurScene).m_Choices.empty () )
 		NextScene (); // Go to the Next scene
 }
@@ -247,10 +247,10 @@ void CConversation::Render ()
 /////////////////////////////////////////
 
 // change to a specific scene
-bool CConversation::ChangeScene (int SceneNr)
+bool CConversation::ChangeScene (unsigned int SceneNr)
 {
 	// for safety test if this is a valid scene
-	if (SceneNr < 0 || SceneNr >= static_cast<int> (m_Scenes.size () ) )
+	if (SceneNr >= m_Scenes.size () )
 		return false;
 
 	// we're still here so this is a valid number
@@ -315,7 +315,7 @@ bool CConversation::ChangeScene (int SceneNr)
 		// Set the new Background
 		m_Background.SetBackgroundColor (tmp->m_BGColor);
 		vector<string>::iterator itBGSprite;
-		for (itBGSprite == tmp->m_BGSprites.begin ();
+		for (itBGSprite = tmp->m_BGSprites.begin ();
 			 itBGSprite != tmp->m_BGSprites.end   ();
 			 itBGSprite++)
 			m_Background.SetBackgroundSprite ((*itBGSprite));
@@ -341,6 +341,8 @@ bool CConversation::ChangeScene (int SceneNr)
 		// Reset the current duration
 		m_fCurrentDuration = 0.0f;
 	}
+	else
+		return false; // the conditions weren't met
 
 	return true;
 }

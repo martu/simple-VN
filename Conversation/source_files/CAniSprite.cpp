@@ -7,6 +7,16 @@
 
 #include "Conversation/CAniSprite.hpp"
 
+// constructor
+CAniSprite::CAniSprite ()
+{
+	m_sFileName.clear ();
+
+	m_FrameHeight = 0;
+	m_FrameWidth  = 0;
+	m_NumFramesX  = 0;
+}
+
 // normal destructor, deletes the image used by the sprite
 CAniSprite::~CAniSprite ()
 {

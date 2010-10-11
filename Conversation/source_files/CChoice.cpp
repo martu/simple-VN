@@ -13,7 +13,8 @@ void CChoice::Render (sf::RenderWindow *pWindow)
 	// TODO only recompute when necessary
 	ComputeNamePos ();
 
-	m_ButtonSprite.Calculate (m_ButtonState-1);
+	// update the choice
+	Update ();
 
 	// Now Render the Name
 	pWindow->Draw (m_ButtonSprite);
@@ -41,9 +42,9 @@ void CChoice::SetChoice (string sName, string sFlag)
 void CChoice::SetMouseOver (bool MouseOver)
 {
 	if (MouseOver)
-		SetState (CButton::MOUSEOVER);
+		SetState (CButton::MOUSEOVER-1); // -1 because we don't have the "deactivated" state here
 	else
-		SetState (CButton::ACTIVATED);
+		SetState (CButton::ACTIVATED-1);
 }
 
 /////////////////////////////////////////

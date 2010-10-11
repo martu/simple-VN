@@ -17,7 +17,7 @@ class CButton
 {
 protected:
 	int m_StdState;     // normal state of the button
-	int m_ButtonState;  // in what state the button is in
+	int m_ButtonState;  // current state of the button
 
 public:
 	// PUBLIC because it makes the rendering easier and makes the handling
@@ -40,12 +40,14 @@ public:
 
 	sf::IntRect GetBoundingBox ();
 
+	void Update () {m_ButtonSprite.Calculate (m_ButtonState);};
+
 	// what state the button is in (invisible, activated...)
 	// also acts as an enum defining the numbers of the frames
 	enum BUTTONSTATE
 	{
 		INVISIBLE = -1,   // the button is not being rendered
-		DEACTIVATED,      // the button is greyed out and not clickable
+		DEACTIVATED,      // the button is not clickable
 		ACTIVATED,        // the button is rendered normally and is clickable
 		MOUSEOVER,        // the mouse is over the button, so highlight it
 	};

@@ -37,10 +37,9 @@ private:
 	CTextArea *m_pTextArea; // pointer to the TextArea
 
 	// SCENE VARIABLES //
-	int   m_CurScene;           // Number of the current Scene // TODO maybe change to a iterator
+	unsigned int   m_CurScene;  // Number of the current Scene // TODO maybe change to a iterator
 	float m_fCurrentDuration;   // how long the current scene is running
-	bool  m_bChangeBackground;  // if the Background should be changed or not
-	vector <SScene> m_Scenes; // Scenes which can be displayed
+	vector <SScene> m_Scenes;   // Scenes which can be displayed
 
 	// DEFAULT EFFECTS //
 	GFXEffect  m_DefaultBGIn;
@@ -49,7 +48,7 @@ private:
 	// GLOBAL VARIABLES //
 	bool  m_bHidden;       // If the Textarea and the GUI is hidden or not
 
-	bool ChangeScene (int SceneNr); // change to a specific scene
+	bool ChangeScene (unsigned int SceneNr); // change to a specific scene
 	bool InFlags     (const string sFlag);
 
 public:
@@ -86,7 +85,7 @@ public:
 
 	void NextScene ();
 	void PrevScene ();
-	void GoToScene (int SceneNr);
+	void GoToScene (unsigned int SceneNr);
 
 	void Update ();
 	void Render ();
